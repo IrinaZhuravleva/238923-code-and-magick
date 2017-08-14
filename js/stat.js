@@ -29,57 +29,45 @@ window.renderStatistics = function (ctx, names, times) {
   var playerHeight = histogramHeight / (max - 0);
 
 	for(var i = 0; i < times.length; i++) {
-	ctx.fillRect(initialTextX + indent * i, initialY + (histogramHeight - times[i] * playerHeight), barWidth, times[i] * playerHeight);
-	ctx.fillText(names[i], initialTextX + indent * i, initialTextY);
-	};
 
+		chooseColor(i, names, times, ctx);
+		ctx.fillRect(initialTextX + indent * i, initialY + (histogramHeight - times[i] * playerHeight), barWidth, times[i] * playerHeight);
+		ctx.fillText(names[i], initialTextX + indent * i, initialTextY);
+	}
 };
 
+function chooseColor (i, names, results, ctx) { 
 
-//ПЕРВЫЙ ВАРИАНТ ПРИСВАИВАНИЯ ЦВЕТОВ - НЕ РАБОТАЕТ
-//   function chooseColor (names) { 
-//   	var i = 0;
-
-//   if (names[i] = "Вы") {
-//   	ctx.fillStyle = "rgba(255, 0, 0, 1)";
-//   	//получается что отрисовываются ВСЕ гистограммы
-//   	i++;
-//   } else if (names[i] = "Катя"){
-//   	ctx.fillStyle = "#2D6E9F";
-//   i++;
-//   } else if (names[i] = "Кекс") {
-// ctx.fillStyle = "#2D4B9F";
-// i++;
-//   } else {
-// ctx.fillStyle = "#04174E";
-//   }
-
-//   };
+  if (names[i] == "Вы") {
+  	ctx.fillStyle = "rgba(255, 0, 0, 1)";
+	} else {
+		ctx.fillStyle = "#00" + (Math.random() * 100).toFixed(0) + "FF";	
+	}
+};
   
-//   chooseColor;
 
+//ВТОРОЙ СПОСОБ - ЧЕРЕЗ ПОДКЛЮЧЕННЫЙ ФАЙЛ 
 
-//ВТОРОЙ ВАРИАНТ ПРИСВАИВАНИЯ ЦВЕТОВ - НЕ РАБОТАЕТ
+// var colors = randomColor({hue: 'blue', count: 3});
 
-// 	var i = 0;
-// 		if (names[i] = "Вы") {
-// 	ctx.fillStyle = "rgba(255, 0, 0, 1)";
-//   ctx.fillRect(initialTextX + indent * i, initialY + (histogramHeight - times[i] * playerHeight), barWidth, times[i] * playerHeight);
-//   ctx.fillText(names[i], initialTextX + indent * i, initialTextY);
-//   i++;
-// } else if (names[i] = "Кекс") {
-// 	ctx.fillStyle = "#2D4B9F";
-// 	ctx.fillRect(initialTextX + indent * i, initialY + (histogramHeight - times[i] * playerHeight), barWidth, times[i] * playerHeight);
-//   ctx.fillText(names[i], initialTextX + indent * i, initialTextY);
-//   i++;
+// 	for(var i = 0; i < times.length; i++) {
+
+// 		chooseColor(i, names, times, ctx, colors)
+// 		ctx.fillRect(initialTextX + indent * i, initialY + (histogramHeight - times[i] * playerHeight), barWidth, times[i] * playerHeight);
+// 		ctx.fillText(names[i], initialTextX + indent * i, initialTextY);
+// 	}
 // };
-  
 
-	//ЦВЕТА ДЛЯ СТОЛБИКОВ
-	// ctx.fillStyle = "#2D6E9F";
-	// ctx.fillStyle = "#2D4B9F";
-	// ctx.fillStyle = "#04174E";
-	
+// function chooseColor (i, names, results, ctx, colors) { 
+
+//   if (names[i] == "Вы") {
+//   	ctx.fillStyle = "rgba(255, 0, 0, 1)";
+// 	} else {
+// 		ctx.fillStyle = colors[i];	
+// 	}
+// };
+
+
 
 
 
